@@ -4,7 +4,7 @@
 
 var _=require('lodash');
 var baseConfig = require('./base').config;
-var configurator = require('.base').configurator;
+var configurator = require('./base').configurator;
 
 var test = {
     name: 'mapano-book-inventory-test',
