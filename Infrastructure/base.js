@@ -24,11 +24,8 @@ var base = {
         'http-shard-header': {enabled: false},
         'http-end-to-end-continue': {enabled: false}
     },
-    addons: {
-        log_drains: ['syslog://data.logentries.com:13636']
-    },
     formation: [{process: 'web', quantity: 1, size: 'Free'}],
-    log_drains: []
+    log_drains: ['syslog://data.logentries.com:13636']
 };
 
 module.exports = {
