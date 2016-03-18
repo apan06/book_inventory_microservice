@@ -4,6 +4,7 @@ module.exports = function(stockRepository) {
             var isbn = req.body.isbn;
             var count = req.body.count;
 
+
             stockRepository.
                 stockUp(isbn, count).
                 then(function (result) {
@@ -14,11 +15,24 @@ module.exports = function(stockRepository) {
         getCount: function (req, res, next) {
             stockRepository.getCount(req.params.isbn).
                 then(function (result) {
+
                     if (result !== null) {
-                        res.status(200).json({count: result});
+                        //res.status(200).json({count: result});
+                        res.status(200);
+                        res.format({
+                            html: function(){
+                                res.send('<div class="copiesLeft">' + result + '</div>');
+                            },
+                            json: function(){
+                                res.json({count: result});
+                            },
+                            default: function () {
+                                res.json({count: result});
+                            }
+                        });
+
                     } else {
                         next();
-                        //res.status(404).json({error: 'No book with ISBN: ' + req.params.isbn});
                     }
                 }).
                 catch(next);
